@@ -45,9 +45,9 @@ export default function ListFormModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white rounded-2xl shadow-xl w-[340px] p-6 animate-in fade-in zoom-in duration-200">
+      <div className="relative bg-white dark:bg-[#2C2C2E] rounded-2xl shadow-xl w-[340px] p-6 animate-in fade-in zoom-in duration-200">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-[#1C1C1E]">
+          <h2 className="text-lg font-semibold text-[#1C1C1E] dark:text-white">
             {initialName ? "목록 편집" : "새로운 목록"}
           </h2>
           <button onClick={onClose}>
@@ -62,7 +62,7 @@ export default function ListFormModal({
             placeholder="목록 이름"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full mb-4 px-3 py-2 text-sm border border-[#E5E5EA] rounded-lg outline-none focus:ring-2 focus:ring-[#007AFF]"
+            className="w-full mb-4 px-3 py-2 text-sm border border-[#E5E5EA] dark:border-[#38383A] dark:bg-[#1C1C1E] dark:text-white rounded-lg outline-none focus:ring-2 focus:ring-[#007AFF]"
           />
 
           <div className="grid grid-cols-6 gap-3 mb-6">

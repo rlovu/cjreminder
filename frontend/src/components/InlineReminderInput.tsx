@@ -32,7 +32,7 @@ export default function InlineReminderInput({ color, onSubmit }: InlineReminderI
 
   if (!isEditing) {
     return (
-      <div className="px-6 py-3 border-t border-[#E5E5EA]">
+      <div className="px-6 py-3 border-t border-[#E5E5EA] dark:border-[#38383A]">
         <button
           onClick={() => setIsEditing(true)}
           className="flex items-center gap-1 text-sm font-medium transition-colors"
@@ -46,7 +46,7 @@ export default function InlineReminderInput({ color, onSubmit }: InlineReminderI
   }
 
   return (
-    <div className="px-6 py-3 border-t border-[#E5E5EA] flex items-center gap-3">
+    <div className="px-6 py-3 border-t border-[#E5E5EA] dark:border-[#38383A] flex items-center gap-3">
       <div
         className="w-5 h-5 rounded-full border-2 flex-shrink-0"
         style={{ borderColor: color }}
@@ -62,7 +62,7 @@ export default function InlineReminderInput({ color, onSubmit }: InlineReminderI
           handleSubmit();
           setIsEditing(false);
         }}
-        className="flex-1 text-sm text-[#1C1C1E] outline-none placeholder-[#C7C7CC]"
+        className="flex-1 text-sm text-[#1C1C1E] dark:text-white dark:bg-transparent outline-none placeholder-[#C7C7CC]"
       />
     </div>
   );

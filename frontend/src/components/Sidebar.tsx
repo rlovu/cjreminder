@@ -26,7 +26,7 @@ export default function Sidebar({
   onAddList,
 }: SidebarProps) {
   return (
-    <aside className="w-[280px] h-full bg-[#F2F2F7] flex flex-col border-r border-[#E5E5EA] overflow-y-auto">
+    <aside className="w-[280px] h-full bg-[#F2F2F7] dark:bg-[#1C1C1E] flex flex-col border-r border-[#E5E5EA] dark:border-[#38383A] overflow-y-auto flex-shrink-0">
       <SearchBar value={searchQuery} onChange={onSearchChange} />
       <SmartListCards summary={summary} selection={selection} onSelect={onSelect} />
 

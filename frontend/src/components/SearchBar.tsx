@@ -16,7 +16,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
         placeholder="검색"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full pl-9 pr-3 py-[6px] rounded-lg bg-[#E5E5EA] text-sm text-[#1C1C1E] placeholder-[#8E8E93] outline-none focus:ring-2 focus:ring-[#007AFF]"
+        className="w-full pl-9 pr-3 py-[6px] rounded-lg bg-[#E5E5EA] dark:bg-[#2C2C2E] text-sm text-[#1C1C1E] dark:text-white placeholder-[#8E8E93] outline-none focus:ring-2 focus:ring-[#007AFF]"
       />
     </div>
   );

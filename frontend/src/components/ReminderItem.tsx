@@ -45,7 +45,7 @@ export default function ReminderItem({
 
   return (
     <li
-      className={`group flex items-start gap-3 py-2 border-b border-[#E5E5EA] transition-opacity duration-300 ${
+      className={`group flex items-start gap-3 py-2 border-b border-[#E5E5EA] dark:border-[#38383A] transition-opacity duration-300 ${
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
@@ -81,7 +81,7 @@ export default function ReminderItem({
             className={`text-sm ${
               reminder.completed
                 ? "line-through text-[#8E8E93]"
-                : "text-[#1C1C1E]"
+                : "text-[#1C1C1E] dark:text-white"
             }`}
           >
             {reminder.title}

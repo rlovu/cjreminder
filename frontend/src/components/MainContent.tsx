@@ -3,6 +3,7 @@
 import { Reminder, Selection, SmartListType, ReminderList } from "@/types";
 import ReminderItem from "./ReminderItem";
 import InlineReminderInput from "./InlineReminderInput";
+import { Menu } from "lucide-react";
 
 const smartListLabels: Record<SmartListType, string> = {
   today: "오늘",
@@ -29,6 +30,7 @@ interface MainContentProps {
   onDelete: (id: number) => void;
   onSelect: (reminder: Reminder) => void;
   onCreateReminder: (title: string) => void;
+  onMenuClick: () => void;
   isSearching: boolean;
 }
 
@@ -41,6 +43,7 @@ export default function MainContent({
   onDelete,
   onSelect,
   onCreateReminder,
+  onMenuClick,
   isSearching,
 }: MainContentProps) {
   let title: string;
@@ -62,8 +65,11 @@ export default function MainContent({
   }
 
   return (
-    <main className="flex-1 h-full bg-white flex flex-col overflow-hidden">
-      <div className="px-6 pt-6 pb-2">
+    <main className="flex-1 h-full bg-white dark:bg-black flex flex-col overflow-hidden">
+      <div className="px-6 pt-6 pb-2 flex items-center gap-3">
+        <button onClick={onMenuClick} className="lg:hidden text-[#8E8E93]">
+          <Menu className="w-6 h-6" />
+        </button>
         <h1 className="text-2xl font-bold" style={{ color }}>
           {title}
         </h1>

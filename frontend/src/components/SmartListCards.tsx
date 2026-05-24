@@ -55,7 +55,7 @@ export default function SmartListCards({
             key={type}
             onClick={() => onSelect({ type: "smart", id: type })}
             className={`flex flex-col items-start p-3 rounded-xl transition-colors duration-150 ${
-              isSelected ? "bg-[#D1D1D6]" : "bg-white hover:bg-[#F2F2F7]"
+              isSelected ? "bg-[#D1D1D6] dark:bg-[#3A3A3C]" : "bg-white dark:bg-[#2C2C2E] hover:bg-[#F2F2F7] dark:hover:bg-[#3A3A3C]"
             }`}
           >
             <div className="flex items-center justify-between w-full mb-1">
@@ -65,7 +65,7 @@ export default function SmartListCards({
               >
                 <Icon className="w-4 h-4 text-white" />
               </div>
-              <span className="text-xl font-bold text-[#1C1C1E]">
+              <span className="text-xl font-bold text-[#1C1C1E] dark:text-white">
                 {getCount(type)}
               </span>
             </div>

@@ -64,9 +64,9 @@ export default function ReminderDetail({
   };
 
   return (
-    <div className="w-[320px] h-full bg-white border-l border-[#E5E5EA] flex flex-col overflow-y-auto">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#E5E5EA]">
-        <h2 className="text-sm font-semibold text-[#1C1C1E]">상세</h2>
+    <div className="w-[320px] h-full bg-white dark:bg-[#1C1C1E] border-l border-[#E5E5EA] dark:border-[#38383A] flex flex-col overflow-y-auto">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#E5E5EA] dark:border-[#38383A]">
+        <h2 className="text-sm font-semibold text-[#1C1C1E] dark:text-white">상세</h2>
         <button onClick={onClose}>
           <X className="w-5 h-5 text-[#8E8E93] hover:text-[#1C1C1E]" />
         </button>
@@ -78,7 +78,7 @@ export default function ReminderDetail({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onBlur={handleSave}
-          className="w-full text-sm font-medium text-[#1C1C1E] border border-[#E5E5EA] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF]"
+          className="w-full text-sm font-medium text-[#1C1C1E] border border-[#E5E5EA] dark:border-[#38383A] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF] dark:bg-[#2C2C2E] dark:text-white"
         />
 
         <textarea
@@ -87,7 +87,7 @@ export default function ReminderDetail({
           onChange={(e) => setNotes(e.target.value)}
           onBlur={handleSave}
           rows={3}
-          className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF] resize-none"
+          className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] dark:border-[#38383A] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF] dark:bg-[#2C2C2E] dark:text-white resize-none"
         />
 
         <div>
@@ -99,7 +99,7 @@ export default function ReminderDetail({
               setDueDate(e.target.value);
               setTimeout(handleSave, 0);
             }}
-            className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF]"
+            className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] dark:border-[#38383A] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF] dark:bg-[#2C2C2E] dark:text-white"
           />
         </div>
 
@@ -111,7 +111,7 @@ export default function ReminderDetail({
               setPriority(e.target.value as Priority);
               setTimeout(handleSave, 0);
             }}
-            className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF]"
+            className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] dark:border-[#38383A] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF] dark:bg-[#2C2C2E] dark:text-white"
           >
             {(Object.keys(priorityLabels) as Priority[]).map((p) => (
               <option key={p} value={p}>
@@ -122,7 +122,7 @@ export default function ReminderDetail({
         </div>
 
         <div className="flex items-center justify-between">
-          <label className="text-sm text-[#1C1C1E]">플래그</label>
+          <label className="text-sm text-[#1C1C1E] dark:text-white">플래그</label>
           <button
             onClick={() => {
               setFlagged(!flagged);
@@ -148,7 +148,7 @@ export default function ReminderDetail({
               setListId(Number(e.target.value));
               setTimeout(handleSave, 0);
             }}
-            className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF]"
+            className="w-full text-sm text-[#1C1C1E] border border-[#E5E5EA] dark:border-[#38383A] rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[#007AFF] dark:bg-[#2C2C2E] dark:text-white"
           >
             {lists.map((l) => (
               <option key={l.id} value={l.id}>
@@ -159,7 +159,7 @@ export default function ReminderDetail({
         </div>
       </div>
 
-      <div className="p-4 border-t border-[#E5E5EA]">
+      <div className="p-4 border-t border-[#E5E5EA] dark:border-[#38383A]">
         <button
           onClick={() => onDelete(reminder.id)}
           className="flex items-center gap-1 text-sm text-[#FF3B30] hover:text-[#CC2D25] transition-colors"

@@ -25,6 +25,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedReminder, setSelectedReminder] = useState<Reminder | null>(null);
   const [showListModal, setShowListModal] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const loadLists = useCallback(async () => {
     const data = await listApi.findAll();
@@ -76,6 +77,7 @@ export default function Home() {
     setSelection(sel);
     setSearchQuery("");
     setSelectedReminder(null);
+    setSidebarOpen(false);
   };
 
   const handleToggleComplete = async (id: number) => {
@@ -133,18 +135,32 @@ export default function Home() {
   };
 
   return (
-    <div className="h-full flex">
-      <Sidebar
-        lists={lists}
-        summary={summary}
-        selection={selection}
-        searchQuery={searchQuery}
-        onSelect={handleSelect}
-        onSearchChange={setSearchQuery}
-        onAddList={() => setShowListModal(true)}
-      />
+    <div className="h-full flex relative">
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <div
+        className={`fixed z-50 h-full lg:static lg:block transition-transform duration-200 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        }`}
+      >
+        <Sidebar
+          lists={lists}
+          summary={summary}
+          selection={selection}
+          searchQuery={searchQuery}
+          onSelect={handleSelect}
+          onSearchChange={setSearchQuery}
+          onAddList={() => setShowListModal(true)}
+        />
+      </div>
 
       <MainContent
+        onMenuClick={() => setSidebarOpen(true)}
         selection={selection}
         lists={lists}
         reminders={reminders}
