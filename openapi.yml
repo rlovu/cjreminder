@@ -1,0 +1,506 @@
+openapi: 3.0.3
+info:
+  title: CJReminder API
+  description: Apple Reminders Web Clone REST API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /api/lists:
+    get:
+      tags: [ReminderList]
+      summary: 전체 리스트 조회
+      description: 모든 리마인더 리스트를 조회한다. 각 리스트의 미완료 리마인더 카운트를 포함한다.
+      operationId: findAllLists
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderListResponse"
+
+    post:
+      tags: [ReminderList]
+      summary: 리스트 생성
+      operationId: createList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReminderListRequest"
+      responses:
+        "201":
+          description: 생성 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderListResponse"
+
+  /api/lists/{id}:
+    get:
+      tags: [ReminderList]
+      summary: 리스트 단건 조회
+      operationId: findListById
+      parameters:
+        - $ref: "#/components/parameters/ListId"
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderListResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    put:
+      tags: [ReminderList]
+      summary: 리스트 수정
+      operationId: updateList
+      parameters:
+        - $ref: "#/components/parameters/ListId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReminderListRequest"
+      responses:
+        "200":
+          description: 수정 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderListResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    delete:
+      tags: [ReminderList]
+      summary: 리스트 삭제
+      description: 리스트를 삭제한다. 소속 리마인더도 함께 삭제된다.
+      operationId: deleteList
+      parameters:
+        - $ref: "#/components/parameters/ListId"
+      responses:
+        "204":
+          description: 삭제 성공
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/lists/{listId}/reminders:
+    get:
+      tags: [Reminder]
+      summary: 리스트별 리마인더 조회
+      description: 해당 리스트의 미완료 리마인더를 조회한다.
+      operationId: findRemindersByListId
+      parameters:
+        - $ref: "#/components/parameters/ListIdPath"
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    post:
+      tags: [Reminder]
+      summary: 리마인더 생성
+      operationId: createReminder
+      parameters:
+        - $ref: "#/components/parameters/ListIdPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReminderRequest"
+      responses:
+        "201":
+          description: 생성 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/reminders/{id}:
+    put:
+      tags: [Reminder]
+      summary: 리마인더 수정
+      operationId: updateReminder
+      parameters:
+        - $ref: "#/components/parameters/ReminderId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReminderRequest"
+      responses:
+        "200":
+          description: 수정 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    delete:
+      tags: [Reminder]
+      summary: 리마인더 삭제
+      operationId: deleteReminder
+      parameters:
+        - $ref: "#/components/parameters/ReminderId"
+      responses:
+        "204":
+          description: 삭제 성공
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/reminders/{id}/toggle:
+    patch:
+      tags: [Reminder]
+      summary: 완료 토글
+      operationId: toggleComplete
+      parameters:
+        - $ref: "#/components/parameters/ReminderId"
+      responses:
+        "200":
+          description: 토글 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/reminders/{id}/flag:
+    patch:
+      tags: [Reminder]
+      summary: 플래그 토글
+      operationId: toggleFlag
+      parameters:
+        - $ref: "#/components/parameters/ReminderId"
+      responses:
+        "200":
+          description: 토글 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/reminders/today:
+    get:
+      tags: [SmartList]
+      summary: 오늘 기한 리마인더
+      operationId: findToday
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+
+  /api/reminders/scheduled:
+    get:
+      tags: [SmartList]
+      summary: 예정된 리마인더
+      description: 기한이 설정된 미완료 리마인더를 날짜순으로 조회한다.
+      operationId: findScheduled
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+
+  /api/reminders/all:
+    get:
+      tags: [SmartList]
+      summary: 전체 미완료 리마인더
+      operationId: findAllReminders
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+
+  /api/reminders/completed:
+    get:
+      tags: [SmartList]
+      summary: 완료된 리마인더
+      operationId: findCompleted
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+
+  /api/reminders/flagged:
+    get:
+      tags: [SmartList]
+      summary: 플래그 리마인더
+      operationId: findFlagged
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+
+  /api/reminders/search:
+    get:
+      tags: [Reminder]
+      summary: 리마인더 검색
+      operationId: searchReminders
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: 검색 키워드 (제목/메모)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReminderResponse"
+
+  /api/reminders/summary:
+    get:
+      tags: [SmartList]
+      summary: 스마트 리스트 카운트 요약
+      operationId: summary
+      responses:
+        "200":
+          description: 성공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SummaryResponse"
+
+components:
+  parameters:
+    ListId:
+      name: id
+      in: path
+      required: true
+      description: 리마인더 리스트 ID
+      schema:
+        type: integer
+        format: int64
+
+    ListIdPath:
+      name: listId
+      in: path
+      required: true
+      description: 리마인더 리스트 ID
+      schema:
+        type: integer
+        format: int64
+
+    ReminderId:
+      name: id
+      in: path
+      required: true
+      description: 리마인더 ID
+      schema:
+        type: integer
+        format: int64
+
+  schemas:
+    ReminderListRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: 리스트 이름
+          example: 개인
+        color:
+          type: string
+          description: HEX 색상 코드
+          example: "#007AFF"
+
+    ReminderListResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: 개인
+        color:
+          type: string
+          example: "#007AFF"
+        reminderCount:
+          type: integer
+          description: 미완료 리마인더 수
+          example: 3
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ReminderRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          example: 운동하기
+        notes:
+          type: string
+          nullable: true
+          example: 헬스장 가기
+        dueDate:
+          type: string
+          format: date
+          nullable: true
+          example: "2026-05-24"
+        priority:
+          $ref: "#/components/schemas/Priority"
+        flagged:
+          type: boolean
+          default: false
+        listId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 리스트 이동 시 대상 리스트 ID
+
+    ReminderResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        title:
+          type: string
+          example: 운동하기
+        notes:
+          type: string
+          nullable: true
+          example: 헬스장 가기
+        dueDate:
+          type: string
+          format: date
+          nullable: true
+          example: "2026-05-24"
+        priority:
+          $ref: "#/components/schemas/Priority"
+        flagged:
+          type: boolean
+          example: false
+        completed:
+          type: boolean
+          example: false
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        listId:
+          type: integer
+          format: int64
+          example: 1
+        listName:
+          type: string
+          example: 개인
+        listColor:
+          type: string
+          example: "#007AFF"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    SummaryResponse:
+      type: object
+      properties:
+        todayCount:
+          type: integer
+          format: int64
+          example: 3
+        scheduledCount:
+          type: integer
+          format: int64
+          example: 12
+        allCount:
+          type: integer
+          format: int64
+          example: 24
+        completedCount:
+          type: integer
+          format: int64
+          example: 8
+        flaggedCount:
+          type: integer
+          format: int64
+          example: 2
+
+    Priority:
+      type: string
+      enum: [NONE, LOW, MEDIUM, HIGH]
+      default: NONE
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "ReminderList not found: 999"
+
+  responses:
+    NotFound:
+      description: 리소스를 찾을 수 없음
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"

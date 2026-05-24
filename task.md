@@ -3,60 +3,60 @@
 ## Phase 1: Backend 기본 API
 
 ### 1-1. 프로젝트 설정
-- [ ] `build.gradle.kts`에 `spring-boot-starter-web` 의존성 추가
-- [ ] `build.gradle.kts`에 SpringDoc OpenAPI 의존성 추가
-- [ ] `application.properties`에 H2 콘솔 활성화 (`spring.h2.console.enabled=true`)
-- [ ] `application.properties`에 JPA DDL 자동 생성 설정 (`spring.jpa.hibernate.ddl-auto=create-drop`)
-- [ ] `application.properties`에 H2 데이터소스 URL 설정
-- [ ] CORS 설정 클래스 작성 (`WebConfig.java` — `localhost:3000` 허용)
+- [x] `build.gradle.kts`에 `spring-boot-starter-web` 의존성 추가
+- [x] `build.gradle.kts`에 SpringDoc OpenAPI 의존성 추가
+- [x] `application.properties`에 H2 콘솔 활성화 (`spring.h2.console.enabled=true`)
+- [x] `application.properties`에 JPA DDL 자동 생성 설정 (`spring.jpa.hibernate.ddl-auto=create-drop`)
+- [x] `application.properties`에 H2 데이터소스 URL 설정
+- [x] CORS 설정 클래스 작성 (`WebConfig.java` — `localhost:3000` 허용)
 
 ### 1-2. Entity 생성
-- [ ] `Priority` enum 생성 (NONE, LOW, MEDIUM, HIGH)
-- [ ] `ReminderList` 엔티티 생성 (id, name, color, createdAt, updatedAt)
-- [ ] `Reminder` 엔티티 생성 (id, title, notes, dueDate, priority, flagged, completed, completedAt, list, createdAt, updatedAt)
-- [ ] `@PrePersist`, `@PreUpdate` 타임스탬프 자동 관리 적용
-- [ ] `ReminderList` ↔ `Reminder` 관계 매핑 (OneToMany / ManyToOne, cascade)
+- [x] `Priority` enum 생성 (NONE, LOW, MEDIUM, HIGH)
+- [x] `ReminderList` 엔티티 생성 (id, name, color, createdAt, updatedAt)
+- [x] `Reminder` 엔티티 생성 (id, title, notes, dueDate, priority, flagged, completed, completedAt, list, createdAt, updatedAt)
+- [x] 정적 팩토리 메서드로 타임스탬프 자동 관리 적용 (create/update 메서드)
+- [x] `ReminderList` ↔ `Reminder` 관계 매핑 (OneToMany / ManyToOne, cascade)
 
 ### 1-3. Repository
-- [ ] `ReminderListRepository` 생성
-- [ ] `ReminderRepository` 생성 + 커스텀 쿼리 메서드:
-  - [ ] `findByListIdAndCompletedFalse`
-  - [ ] `findByCompletedTrue`
-  - [ ] `findByFlaggedTrueAndCompletedFalse`
-  - [ ] `findByDueDateAndCompletedFalse`
-  - [ ] `findByDueDateNotNullAndCompletedFalseOrderByDueDate`
-  - [ ] `findByTitleContainingIgnoreCaseOrNotesContainingIgnoreCase`
+- [x] `ReminderListRepository` 생성
+- [x] `ReminderRepository` 생성 + 커스텀 쿼리 메서드:
+  - [x] `findByListIdAndCompletedFalse`
+  - [x] `findByCompletedTrue`
+  - [x] `findByFlaggedTrueAndCompletedFalse`
+  - [x] `findByDueDateAndCompletedFalse`
+  - [x] `findByDueDateNotNullAndCompletedFalseOrderByDueDate`
+  - [x] `findByTitleContainingIgnoreCaseOrNotesContainingIgnoreCase`
 
 ### 1-4. DTO
-- [ ] `ReminderListRequest` 생성 (name, color)
-- [ ] `ReminderListResponse` 생성 (id, name, color, reminderCount, createdAt, updatedAt)
-- [ ] `ReminderRequest` 생성 (title, notes, dueDate, priority, flagged)
-- [ ] `ReminderResponse` 생성 (전체 필드 + listId, listName, listColor)
-- [ ] `SummaryResponse` 생성 (todayCount, scheduledCount, allCount, completedCount, flaggedCount)
+- [x] `ReminderListRequest` 생성 (name, color)
+- [x] `ReminderListResponse` 생성 (id, name, color, reminderCount, createdAt, updatedAt)
+- [x] `ReminderRequest` 생성 (title, notes, dueDate, priority, flagged)
+- [x] `ReminderResponse` 생성 (전체 필드 + listId, listName, listColor)
+- [x] `SummaryResponse` 생성 (todayCount, scheduledCount, allCount, completedCount, flaggedCount)
 
 ### 1-5. Service
-- [ ] `ReminderListService` — 전체 조회 (카운트 포함), 단건 조회, 생성, 수정, 삭제
-- [ ] `ReminderService` — 리스트별 조회, 생성, 수정, 삭제
-- [ ] `ReminderService` — 완료 토글, 플래그 토글
-- [ ] `ReminderService` — 스마트 리스트 (today, scheduled, all, completed, flagged)
-- [ ] `ReminderService` — 검색, 요약(summary)
+- [x] `ReminderListService` — 전체 조회 (카운트 포함), 단건 조회, 생성, 수정, 삭제
+- [x] `ReminderService` — 리스트별 조회, 생성, 수정, 삭제
+- [x] `ReminderService` — 완료 토글, 플래그 토글
+- [x] `ReminderService` — 스마트 리스트 (today, scheduled, all, completed, flagged)
+- [x] `ReminderService` — 검색, 요약(summary)
 
 ### 1-6. Controller
-- [ ] `ReminderListController` — GET/POST/PUT/DELETE `/api/lists`
-- [ ] `ReminderController` — GET/POST `/api/lists/{listId}/reminders`
-- [ ] `ReminderController` — PUT/DELETE/PATCH `/api/reminders/{id}`
-- [ ] `ReminderController` — GET 스마트 리스트 (`/api/reminders/today|scheduled|all|completed|flagged`)
-- [ ] `ReminderController` — GET 검색 (`/api/reminders/search`)
-- [ ] `ReminderController` — GET 요약 (`/api/reminders/summary`)
+- [x] `ReminderListController` — GET/POST/PUT/DELETE `/api/lists`
+- [x] `ReminderController` — GET/POST `/api/lists/{listId}/reminders`
+- [x] `ReminderController` — PUT/DELETE/PATCH `/api/reminders/{id}`
+- [x] `ReminderController` — GET 스마트 리스트 (`/api/reminders/today|scheduled|all|completed|flagged`)
+- [x] `ReminderController` — GET 검색 (`/api/reminders/search`)
+- [x] `ReminderController` — GET 요약 (`/api/reminders/summary`)
 
 ### 1-7. 초기 데이터
-- [ ] `data.sql` 작성 — 샘플 리스트 3개 + 리마인더 10개
+- [x] `data.sql` 작성 — 샘플 리스트 3개 + 리마인더 10개
 
 ### 1-8. 검증
-- [ ] `./gradlew build` 성공
-- [ ] H2 콘솔에서 테이블/데이터 확인
-- [ ] curl 또는 Swagger UI로 전체 API 엔드포인트 테스트
-- [ ] `./gradlew test` 통과
+- [x] `./gradlew build` 성공
+- [x] H2 콘솔에서 테이블/데이터 확인
+- [x] curl 또는 Swagger UI로 전체 API 엔드포인트 테스트
+- [x] `./gradlew test` 통과
 
 ---
 
