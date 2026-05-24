@@ -63,119 +63,119 @@
 ## Phase 2: Frontend 기본 골격 + 사이드바
 
 ### 2-1. Next.js 프로젝트 생성
-- [ ] `npx create-next-app@latest frontend` (TypeScript, Tailwind CSS, App Router)
-- [ ] Lucide React 설치 (`npm install lucide-react`)
-- [ ] `.env.local`에 `NEXT_PUBLIC_API_URL=http://localhost:8080/api` 설정
+- [x] `npx create-next-app@latest frontend` (TypeScript, Tailwind CSS, App Router)
+- [x] Lucide React 설치 (`npm install lucide-react`)
+- [x] `.env.local`에 `NEXT_PUBLIC_API_URL=http://localhost:8080/api` 설정
 
 ### 2-2. 타입 정의
-- [ ] `types/index.ts` — ReminderList, Reminder, Priority, SummaryResponse 타입 정의
+- [x] `types/index.ts` — ReminderList, Reminder, Priority, SummaryResponse 타입 정의
 
 ### 2-3. API 클라이언트
-- [ ] `lib/api.ts` — 리스트 CRUD 함수
-- [ ] `lib/api.ts` — 리마인더 CRUD 함수
-- [ ] `lib/api.ts` — 스마트 리스트 조회, 검색, 요약 함수
+- [x] `lib/api.ts` — 리스트 CRUD 함수
+- [x] `lib/api.ts` — 리마인더 CRUD 함수
+- [x] `lib/api.ts` — 스마트 리스트 조회, 검색, 요약 함수
 
 ### 2-4. 레이아웃
-- [ ] `app/layout.tsx` — 시스템 폰트 스택, 전역 스타일
-- [ ] `app/page.tsx` — 2-column 레이아웃 (사이드바 280px + 메인 flex-1)
+- [x] `app/layout.tsx` — 시스템 폰트 스택, 전역 스타일
+- [x] `app/page.tsx` — 2-column 레이아웃 (사이드바 280px + 메인 flex-1)
 
 ### 2-5. 사이드바 컴포넌트
-- [ ] `SearchBar.tsx` — 둥근 검색 입력 필드 (UI만)
-- [ ] `SmartListCards.tsx` — 2-column 그리드 카드 (아이콘 + 라벨 + 카운트), summary API 연동
-- [ ] `ListItem.tsx` — 컬러 불릿 + 이름 + 카운트
-- [ ] `Sidebar.tsx` — SearchBar + SmartListCards + 리스트 목록 조합
-- [ ] 선택 상태 관리 (useState로 현재 선택된 리스트/스마트리스트 추적)
+- [x] `SearchBar.tsx` — 둥근 검색 입력 필드 (UI만)
+- [x] `SmartListCards.tsx` — 2-column 그리드 카드 (아이콘 + 라벨 + 카운트), summary API 연동
+- [x] `ListItem.tsx` — 컬러 불릿 + 이름 + 카운트
+- [x] `Sidebar.tsx` — SearchBar + SmartListCards + 리스트 목록 조합
+- [x] 선택 상태 관리 (useState로 현재 선택된 리스트/스마트리스트 추적)
 
 ### 2-6. 메인 영역
-- [ ] `MainContent.tsx` — 선택된 리스트 헤더 (이름 + 카운트)
-- [ ] 빈 상태 placeholder 표시
+- [x] `MainContent.tsx` — 선택된 리스트 헤더 (이름 + 카운트)
+- [x] 빈 상태 placeholder 표시
 
 ### 2-7. 검증
-- [ ] `npm run dev` 실행 확인
-- [ ] 사이드바에 스마트 리스트 카드 표시 확인 (API 연동)
-- [ ] 사이드바에 사용자 리스트 표시 확인 (API 연동)
-- [ ] 리스트/스마트리스트 클릭 시 선택 상태 변경 확인
+- [x] `npm run dev` 실행 확인
+- [x] 사이드바에 스마트 리스트 카드 표시 확인 (API 연동)
+- [x] 사이드바에 사용자 리스트 표시 확인 (API 연동)
+- [x] 리스트/스마트리스트 클릭 시 선택 상태 변경 확인
 
 ---
 
 ## Phase 3: 리마인더 목록 표시 + CRUD
 
 ### 3-1. ReminderItem 컴포넌트
-- [ ] 원형 체크박스 (미완료: 빈 원, 완료: 채워진 원)
-- [ ] 제목 + 메모 미리보기 (1줄, 회색 작은 폰트)
-- [ ] 기한 표시 (지난 날짜 빨간색)
-- [ ] 우선순위 표시 (`!` / `!!` / `!!!`)
-- [ ] 플래그 아이콘 (주황색 깃발)
-- [ ] 완료 체크 애니메이션 (fill + strikethrough + fade-out)
+- [x] 원형 체크박스 (미완료: 빈 원, 완료: 채워진 원)
+- [x] 제목 + 메모 미리보기 (1줄, 회색 작은 폰트)
+- [x] 기한 표시 (지난 날짜 빨간색)
+- [x] 우선순위 표시 (`!` / `!!` / `!!!`)
+- [x] 플래그 아이콘 (주황색 깃발)
+- [x] 완료 체크 애니메이션 (fill + strikethrough + fade-out)
 
 ### 3-2. MainContent 리마인더 목록
-- [ ] 사용자 리스트 선택 시 `GET /api/lists/{listId}/reminders` 호출
-- [ ] 스마트 리스트 선택 시 해당 API 호출 (today, scheduled, all, completed, flagged)
-- [ ] 리마인더 목록 렌더링
+- [x] 사용자 리스트 선택 시 `GET /api/lists/{listId}/reminders` 호출
+- [x] 스마트 리스트 선택 시 해당 API 호출 (today, scheduled, all, completed, flagged)
+- [x] 리마인더 목록 렌더링
 
 ### 3-3. InlineReminderInput
-- [ ] "+ 새로운 미리 알림" 버튼 (리스트 색상 텍스트)
-- [ ] 클릭 시 인라인 입력 행 삽입
-- [ ] Enter 키로 저장 (`POST /api/lists/{listId}/reminders`)
-- [ ] 저장 후 목록 즉시 갱신
+- [x] "+ 새로운 미리 알림" 버튼 (리스트 색상 텍스트)
+- [x] 클릭 시 인라인 입력 행 삽입
+- [x] Enter 키로 저장 (`POST /api/lists/{listId}/reminders`)
+- [x] 저장 후 목록 즉시 갱신
 
 ### 3-4. 완료 토글
-- [ ] 체크박스 클릭 → `PATCH /api/reminders/{id}/toggle`
-- [ ] 애니메이션 완료 후 목록에서 제거 (미완료 목록인 경우)
-- [ ] 사이드바 카운트 갱신
+- [x] 체크박스 클릭 → `PATCH /api/reminders/{id}/toggle`
+- [x] 애니메이션 완료 후 목록에서 제거 (미완료 목록인 경우)
+- [x] 사이드바 카운트 갱신
 
 ### 3-5. 삭제
-- [ ] 리마인더 호버 시 삭제 버튼 표시
-- [ ] `DELETE /api/reminders/{id}` 호출
-- [ ] 목록 + 사이드바 카운트 갱신
+- [x] 리마인더 호버 시 삭제 버튼 표시
+- [x] `DELETE /api/reminders/{id}` 호출
+- [x] 목록 + 사이드바 카운트 갱신
 
 ### 3-6. 검증
-- [ ] 리스트 선택 → 리마인더 목록 정상 로드
-- [ ] 인라인 생성 → 목록 즉시 반영
-- [ ] 완료 토글 → 애니메이션 + 목록 갱신
-- [ ] 스마트 리스트 필터링 정상 동작
-- [ ] 삭제 → 목록 + 카운트 갱신
+- [x] 리스트 선택 → 리마인더 목록 정상 로드
+- [x] 인라인 생성 → 목록 즉시 반영
+- [x] 완료 토글 → 애니메이션 + 목록 갱신
+- [x] 스마트 리스트 필터링 정상 동작
+- [x] 삭제 → 목록 + 카운트 갱신
 
 ---
 
 ## Phase 4: 상세 편집 + 리스트 관리 + 검색
 
 ### 4-1. ReminderDetail 패널
-- [ ] 리마인더 클릭 시 상세 패널 슬라이드-인
-- [ ] 제목 편집 (input)
-- [ ] 메모 편집 (textarea)
-- [ ] 기한 설정 (date picker)
-- [ ] 우선순위 선택 (드롭다운: 없음/낮음/보통/높음)
-- [ ] 플래그 토글 스위치
-- [ ] 리스트 이동 (드롭다운으로 다른 리스트 선택)
-- [ ] 삭제 버튼 (빨간색)
-- [ ] `PUT /api/reminders/{id}` 호출 (포커스 아웃 시 자동 저장)
+- [x] 리마인더 클릭 시 상세 패널 슬라이드-인
+- [x] 제목 편집 (input)
+- [x] 메모 편집 (textarea)
+- [x] 기한 설정 (date picker)
+- [x] 우선순위 선택 (드롭다운: 없음/낮음/보통/높음)
+- [x] 플래그 토글 스위치
+- [x] 리스트 이동 (드롭다운으로 다른 리스트 선택)
+- [x] 삭제 버튼 (빨간색)
+- [x] `PUT /api/reminders/{id}` 호출 (포커스 아웃 시 자동 저장)
 
 ### 4-2. ListFormModal
-- [ ] "+ 목록 추가" 버튼 → 생성 모달 표시
-- [ ] 리스트 이름 입력 필드
-- [ ] 12색 원형 팔레트 색상 선택
-- [ ] 모달 배경 블러 + scale/opacity 애니메이션
+- [x] "+ 목록 추가" 버튼 → 생성 모달 표시
+- [x] 리스트 이름 입력 필드
+- [x] 12색 원형 팔레트 색상 선택
+- [x] 모달 배경 블러 + scale/opacity 애니메이션
 - [ ] 리스트 수정 (더보기 메뉴 → 편집 모달)
 - [ ] 리스트 삭제 (확인 다이얼로그 → `DELETE /api/lists/{id}`)
 
 ### 4-3. 검색 기능
-- [ ] SearchBar 입력 → 디바운스 300ms
-- [ ] `GET /api/reminders/search?q={keyword}` 호출
-- [ ] 검색 결과를 메인 영역에 표시
-- [ ] 검색 해제 시 이전 리스트로 복귀
+- [x] SearchBar 입력 → 디바운스 300ms
+- [x] `GET /api/reminders/search?q={keyword}` 호출
+- [x] 검색 결과를 메인 영역에 표시
+- [x] 검색 해제 시 이전 리스트로 복귀
 
 ### 4-4. 플래그 토글
-- [ ] 리마인더 항목에서 플래그 토글
-- [ ] 상세 패널에서 플래그 토글
-- [ ] `PATCH /api/reminders/{id}/flag` 호출
+- [x] 리마인더 항목에서 플래그 토글
+- [x] 상세 패널에서 플래그 토글
+- [x] `PATCH /api/reminders/{id}/flag` 호출
 - [ ] 깃발 아이콘 bounce 애니메이션
 
 ### 4-5. 검증
-- [ ] 리마인더 상세 편집 후 저장 확인
-- [ ] 리스트 생성 → 사이드바 즉시 반영
+- [x] 리마인더 상세 편집 후 저장 확인
+- [x] 리스트 생성 → 사이드바 즉시 반영
 - [ ] 리스트 삭제 → 소속 리마인더 함께 삭제
-- [ ] 검색어 입력 → 결과 필터링
+- [x] 검색어 입력 → 결과 필터링
 - [ ] 전체 CRUD 플로우 E2E 확인
 
 ---
